@@ -10,8 +10,15 @@ export function App(props) {
   );
 }
 
+/**
+ * 
+ * @param {*} noOfRows 
+ * @returns 
+ */
 function Game({ noOfRows }) {
+  //keep count of whos turn it is
   const [isPlayerX, setIsPlayerX] = useState(true);
+  //keeps track of the game so far
   const [gameTiles, setGameTiles] = useState(Array(noOfRows * noOfRows).fill(null));
 
   /**
@@ -20,14 +27,15 @@ function Game({ noOfRows }) {
    * @returns 
    */
   function handleClick(idx) {
+    //ensure that the same tile can't be clicked again and that game is over if someone wins
     if (checkWinner(gameTiles) || gameTiles[idx] !== null) {
-      //ensure that the same tile can't be clicked again and that game is over if someone wins
       return
     }
+    //copy the current game state so far
     let newGameTiles = gameTiles.slice()
-    //update marker in clicked tile
+    //update the clicked tile in the new state
     newGameTiles[idx] = isPlayerX ? "X" : "O"
-    //update all tiles
+    //update state
     setGameTiles(newGameTiles)
 
     //change player
@@ -35,16 +43,17 @@ function Game({ noOfRows }) {
   }
 
   /**
-   * Resets the game board and player
+   * Resets the game board and player turn
    */
   function resetGame() {
     setGameTiles(Array(noOfRows * noOfRows).fill(null))
     setIsPlayerX(true)
   }
 
+  //create status string and change it in case someone one or made a move
+  let status = "Make a move player X"
   let p = isPlayerX ? "X" : "O"
   let winner = checkWinner(gameTiles)
-  let status = "Make a move player X"
   if (winner) {
     status = "Player " + winner + " won!"
   } else {
@@ -76,7 +85,7 @@ function Game({ noOfRows }) {
   }
 
   /**
-   * Generates game winning matrix
+   * Generates game winning matrix, thanks ChatGPT
    * @param {*} rows 
    * @param {*} cols 
    * @returns 
@@ -121,6 +130,7 @@ function Game({ noOfRows }) {
 
 /**
  * The game board. Creates "noOfRows" rows of with "noOfRows" tiles
+ * Each tile is given a number from 0-n
  * @param {*} param0 
  * @returns 
  */
