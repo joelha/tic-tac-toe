@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 24px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -17,8 +18,11 @@ code {
 }
 
 .board {
-  min-height: 80*3;
   background: #141414;
+  width: fit-content;
+  padding: 8px;
+  margin-bottom: 24px;
+  border-radius: 16px;
 }
 
 .status {
@@ -47,4 +51,18 @@ code {
 
 .tile:hover {
   background: #ffffffe0;
+}
+
+button {
+  padding: 8px;
+  display: block;
+  border-radius: 8px;
+  /* border-color: #ffffff; */
+  width: 280px;
+  padding: 8px;
+  font-size: 1.2em;
+}
+
+body, button {
+  font-family: "Lucida console", sans-serif;
 }
