@@ -42,15 +42,14 @@ function Game({ noOfRows }) {
     setIsPlayerX(true)
   }
 
-  let msg = "Make a move player X"
   let p = isPlayerX ? "X" : "O"
   let winner = checkWinner(gameTiles)
+  let status = "Make a move player X"
   if (winner) {
-    msg = "Player " + winner + " won!"
+    status = "Player " + winner + " won!"
   } else {
-    msg = "Make a move player " + p + "!"
+    status = "Make a move player " + p + "!"
   }
-  let status = msg
 
   return (
     <div className='game'>
