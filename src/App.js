@@ -61,7 +61,7 @@ function Game({ noOfRows }) {
   )
 
   /**
-   * Check if someone won given updated tiles
+   * Check if someone won given updated tiles, only works for 3x3 grids now
    * @param {*} newTiles 
    * @returns 
    */
