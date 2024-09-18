@@ -17,6 +17,15 @@ code {
   min-height: auto !important;
 }
 
+h1 {
+  margin: auto;
+  width: 50%;
+}
+.game {
+  margin: auto;
+  width: 50%;
+}
+
 .board {
   background: #141414;
   width: fit-content;

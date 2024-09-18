@@ -121,7 +121,7 @@ function Game({ noOfRows }) {
 }
 
 /**
- * The game board, creates rows and columns based on noOfRows param
+ * The game board. Creates "noOfRows" rows of with "noOfRows" tiles
  * @param {*} param0 
  * @returns 
  */
@@ -144,6 +144,11 @@ function Board({ noOfRows, boardClicked, gTiles }) {
   )
 }
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function Tile({ marker, tileClicked }) {
   return (
     <button className='tile' onClick={tileClicked} >{marker}</button>
