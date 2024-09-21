@@ -1,5 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
+import { Board } from './Board.js';
+import { generateLines } from './Helper.js';
+
 
 export function App(props) {
   return (
@@ -84,84 +87,6 @@ function Game({ noOfRows }) {
     return false;
   }
 
-  /**
-   * Generates game winning matrix, thanks ChatGPT
-   * @param {*} rows 
-   * @param {*} cols 
-   * @returns 
-   */
-  function generateLines(rows, cols) {
-    const lines = [];
-
-    // Horizontal lines
-    for (let i = 0; i < rows; i++) {
-      const line = [];
-      for (let j = 0; j < cols; j++) {
-        line.push(i * cols + j);
-      }
-      lines.push(line);
-    }
-
-    // Vertical lines
-    for (let j = 0; j < cols; j++) {
-      const line = [];
-      for (let i = 0; i < rows; i++) {
-        line.push(i * cols + j);
-      }
-      lines.push(line);
-    }
-
-    // Diagonal (top-left to bottom-right)
-    if (rows === cols) {  // Diagonals only exist in square grids
-      const diagonal1 = [];
-      const diagonal2 = [];
-      for (let i = 0; i < rows; i++) {
-        diagonal1.push(i * cols + i);        // Top-left to bottom-right
-        diagonal2.push(i * cols + (cols - 1 - i));  // Top-right to bottom-left
-      }
-      lines.push(diagonal1);
-      lines.push(diagonal2);
-    }
-
-    return lines;
-  }
-
-}
-
-/**
- * The game board. Creates "noOfRows" rows of with "noOfRows" tiles
- * Each tile is given a number from 0-n
- * @param {*} param0 
- * @returns 
- */
-function Board({ noOfRows, boardClicked, gTiles }) {
-  const tiles = Array.from({ length: noOfRows }).map((_, rowIndex) => (
-    <div className='row' key={rowIndex}>
-      {
-        Array.from({ length: noOfRows }).map((_, tileIndex) => {
-          const uniqueIndex = rowIndex * noOfRows + tileIndex
-          return <Tile key={uniqueIndex} marker={gTiles[uniqueIndex]} tileClicked={() => boardClicked(uniqueIndex)}></Tile>
-        })
-      }
-    </div>
-  ))
-
-  return (
-    <div className='board'>
-      {tiles}
-    </div>
-  )
-}
-
-/**
- * 
- * @param {*} param0 
- * @returns 
- */
-function Tile({ marker, tileClicked }) {
-  return (
-    <button className='tile' onClick={tileClicked} >{marker}</button>
-  )
 }
 
 export default App
